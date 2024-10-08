@@ -30,12 +30,9 @@
             margin: 0;
             font-size: 2rem;
             text-transform: uppercase;
-            background: linear-gradient(90deg, rgba(255,0,0,1) 30%, rgb(242, 255, 0) 50%, rgb(183, 0, 255) 50%, rgba(0,255,0,1) 50%, rgb(255, 238, 0) 50%, rgba(0,0,255,1) 70%);
+            background-color: aliceblue;
             background-size: 200% 200%;
             color: #fff;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientAnimation 3s ease infinite;
         }
 
         @keyframes gradientAnimation {
