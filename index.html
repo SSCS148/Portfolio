@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">i
+    <link rel="stylesheet" href="style.css">
     <title>SACHA SHIMON COHEN-SOLAL Portfolio</title>
-    
 </head>
 <body>
     <div id="particles-js"></div>
@@ -23,7 +22,6 @@
 
     <div class="content">
         <section id="about" class="section">
-            <!-- <h2>Get to know me!</h2> -->
             <img src="Screenshot 2024-06-11 at 19.30.23.png" alt="Your Photo" class="profile-photo">
             <p>I am a passionate full-stack web developer with a solid background in computer science from France and Israel. At Developers Institute, I’ve honed my skills in HTML, CSS, JavaScript, React.js, Node.js, Python, PostgreSQL, and more. Highly motivated, I fully commit to everything I undertake, always striving to see things through and push the boundaries of what’s possible in web development.</p>
         </section>
@@ -51,15 +49,15 @@
             <div class="projects-grid">
                 <a class="project-item" href="https://project-breslov.onrender.com" target="_blank">Final Project</a>
             </div>
-            <p>Stay with us next projects are on there way ...</p>
+            <p>Stay with us, next projects are on their way...</p>
         </section>
 
         <section id="contact" class="section">
             <h2>Contact Me</h2>
             <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <input type="text" placeholder="Your Name" name="name" required>
+                <input type="email" placeholder="Your Email" name="email" required>
+                <textarea placeholder="Your Message" name="message" rows="5" required></textarea>
                 <button type="submit">Send</button>
             </form>
         </section>
@@ -87,6 +85,39 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
+
+    <script>
+        document.querySelector(".contact-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            // Récupère les valeurs du formulaire
+            const name = document.querySelector("input[placeholder='Your Name']").value;
+            const email = document.querySelector("input[placeholder='Your Email']").value;
+            const message = document.querySelector("textarea[placeholder='Your Message']").value;
+
+            // L'URL de ton Google Apps Script déployé
+            const scriptURL = 'https://script.google.com/macros/library/d/1zCF-xEVZJ3WL_-ZuNBT2nn9VJczgw94swVx9sOadhhFhlipPw29iipaB/3';
+
+            // Envoie des données via une requête POST
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Cette option est nécessaire pour éviter les problèmes CORS
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    'name': name,
+                    'email': email,
+                    'message': message
+                })
+            })
+            .then(response => {
+                alert('Form Submitted Successfully');
+                document.querySelector(".contact-form").reset(); // Réinitialise le formulaire
+            })
+            .catch(error => console.error('Error!', error.message));
+        });
+    </script>
+
 </body>
 </html>
